@@ -1,0 +1,78 @@
+* html .png { behavior: url(i/adm/iepngfix.htc) }
+ul.serv,
+ul.main,
+.content,
+.wrap,
+ul.details,
+.panel li,
+ul.nav li span,
+.content h2 span,
+ul.addel,
+.pager,
+ul.areas,
+a.turnon,
+a.turnoff,
+.view-props,
+.save-all,
+.input-file,
+.input-file label input,
+.var,
+.hide span,
+ul.nav ul li.active,
+.type-3 .expanded a,
+.type-3 .collapsed a,
+.interact{
+	zoom: 1;
+}
+
+.hide, .show{
+	_display: inline;
+	_width: 228px;
+}
+.page { _width:expression(((document.compatMode && document.compatMode=='CSS1Compat') ? document.documentElement.clientWidth : document.body.clientWidth) < 1001 ? "1001px" : "auto"); }
+.panel{
+	_position:absolute;
+	_top:expression( eval(document.documentElement.scrollTop) + 114 + 'px' );
+}
+table{font-size: 1em;}
+input.txt{	
+	margin-top: -1px;
+	height: 15px;
+}
+.var input.txt {margin-top: 0;}
+form.type-1{width: 100%;}
+.type-1 td{_padding: 5px 10px 5px;}
+.type-1 col.f185 {width: 165px;}
+.warning td{_padding: 10px 10px 10px !important;}
+.check{margin: 0 0 0 -3px;}
+.type-2 thead td{
+	background: #eef1f5;
+	height: 34px;
+	vertical-align: middle;
+	color: #3a6f8f;
+}
+ul.system{_width: 98px;}
+ul.modal{_width: 166px;}.page-back, .page-forward, .pager ul, .pager ul li{_display: inline;}
+.radio-block input{margin: 0 0 0 -2px;}
+.input-file {
+	margin-left: -3px;
+}
+.input-file label input {filter:alpha(opacity=0);}
+.var {_right:-3px;}
+.f224 {_width: 227px;}
+.f277 {_width: 280px;}
+.hide span {cursor: pointer;}
+.tools td.first {
+	padding-left: 0;
+}.footer{
+	margin: -52px 40px 0;
+	top: auto;
+}
+.top-up .top,
+.top-up .bottom {_font-size: 0;}
+.top-up .middle {_width: 222px;}
+.f640 .middle {_width: 592px;}
+.f470 .middle {_width: 422px;}
+.f270 .middle {_width: 222px;}
+.f210 .middle {_width: 162px;}
+

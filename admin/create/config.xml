@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<basename>cms_cms</basename>
+
+<coltypes>
+    <option value="0">Ключевое поле (автоинкремент)</option>
+    <option value="1">Короткий текст</option>
+    <option value="2">Длинный текст</option>
+    <option value="3">Целое число</option>
+    <option value="4">Дробь</option>
+    <option value="5">Е-майл</option>
+    <option value="6">Справочник</option>
+    <option value="7">Картинка</option>
+    <option value="8">Check box</option>
+    <option value="9">Радио кнопка</option>
+    <option value="10">Список</option>
+    <option value="11">Порядок сортировки</option>
+    <option value="12">Дата-время</option>
+    <option value="14">Файл</option>
+    <option value="15">Битовые поля</option>
+</coltypes>
+
+<coltypes_indirect>
+    <option value="0" parent_table_option=" auto_increment">int(12) unsigned</option>
+    <option value="1">varchar(255)</option>
+    <option value="2">text</option>
+    <option value="3">int(12) unsigned</option>
+    <option value="4">double</option>
+    <option value="5">varchar(128)</option>
+    <option value="6">int(12) unsigned</option>
+    <option value="7">varchar(50)</option>
+    <option value="8">int(1) unsigned</option>
+    <option value="9">int(3) unsigned</option>
+    <option value="10">int(12) unsigned</option>
+    <option value="11">int(12) unsigned</option>
+    <option value="12">datetime</option>
+    <option value="14">varchar(50)</option>
+    <option value="15">bigint</option>
+</coltypes_indirect>
+
+<coltypes_orm>
+    <option value="0">Integer,nullable=False</option>
+    <option value="1">String(255)</option>
+    <option value="2">Text</option>
+    <option value="3">Integer</option>
+    <option value="4">Float</option>
+    <option value="5">String(128)</option>
+    <option value="6">Integer</option>
+    <option value="7">String(50)</option>
+    <option value="8">Integer(1)</option>
+    <option value="9">Integer(3)</option>
+    <option value="10">Integer</option>
+    <option value="11">Integer</option>
+    <option value="12">DateTime</option>
+    <option value="14">String(50)</option>
+    <option value="15">Integer(2)</option>
+</coltypes_orm>
+
+
+<table name="ignore_domains" classname="IgnoreDomains">
+    <name>Домены на которые не гнать трафф</name>
+    <col type="0" name="site_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="1" name="url" visuality="y" size="90" not_null="y">
+        <required>Не может быть пустым</required>
+        <name>Домен</name>
+        <comment>Домен</comment>
+    </col>
+</table>
+
+<table name="site" classname="Site">
+    <name>Сайты пользователя</name>
+    <col type="0" name="site_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="1" name="url" visuality="y" size="90" not_null="y" child="Code">
+        <required>Не может быть пустым</required>
+        <name>Url</name>
+        <comment>Url</comment>
+    </col>
+    <col type="8" name="status" selectible="y" isstate="y" not_null="y">
+        <name>Вкл</name>
+        <comment>Флаг (1-вкл 0-выкл)</comment>
+    </col>
+    <col type="3" name="redirpercent" visuality="y" size="90" not_null="y">
+        <name>Процент покупного трафа</name>
+        <comment>Процент покупного трафа</comment>
+    </col>
+</table>
+
+
+<table name="code_clicks" classname="СodeClicks">
+    <name>Переходы с кода</name>
+    <col type="3" name="date" primary="y" not_null="y" datatype="date">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="3" name="bcode_id" primary="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="3" name="cnt" visuality="y" size="90" not_null="y">
+        <name>Количество</name>
+        <comment>Количество</comment>
+    </col>
+</table>
+
+<table name="partner_system" classname="PartnerSystem">
+    <name>Партнерские системы</name>
+    <col type="0" name="partner_system_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="1" name="name" visuality="y" size="90" not_null="y">
+        <required>Не может быть пустым</required>
+        <name>Название</name>
+        <comment>Название</comment>
+    </col>
+</table>
+
+<table name="partner_stat" classname="PartnerStat">
+    <name>Статистика партнерок</name>
+    <col type="3" name="date" primary="y" not_null="y" datatype="date">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="3" name="partner_system_id" primary="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="1" name="divname" primary="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="3" name="views" visuality="y" size="90" not_null="y">
+        <name>Показы</name>
+        <comment>Показы</comment>
+    </col>
+    <col type="3" name="clicks" visuality="y" size="90" not_null="y">
+        <name>Клики</name>
+        <comment>Клики</comment>
+    </col>
+    <col type="4" name="money" visuality="y" size="90" not_null="y">
+        <name>Деньги</name>
+        <comment>Деньги</comment>
+    </col>
+</table>
+
+<table name="block" classname="Block">
+    <name>Блоки пользователя</name>
+    <col type="0" name="block_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="6" name="user_id" visuality="y" popup="y" controller="User">
+        <name>Пользователь</name>
+        <comment>Пользователь</comment>
+        <ref><table>user</table><field>user_id</field><visual>email</visual><order>email</order></ref>
+        <index>3</index>
+    </col>
+    <col type="6" name="site_id" visuality="y">
+        <name>Сайт</name>
+        <comment>Сайт</comment>
+        <ref><table>site</table><field>site_id</field><visual>url</visual><order>url</order></ref>
+        <index>3</index>
+    </col>
+    <col type="1" name="name" visuality="y" size="90" not_null="y" child="Code">
+        <required>Не может быть пустым</required>
+        <name>Название</name>
+        <comment>Название</comment>
+    </col>
+    <col type="3" name="redirpercent" visuality="y" size="90" not_null="y">
+        <name>Процент покупного трафа</name>
+        <comment>Процент покупного трафа</comment>
+    </col>
+</table>
+
+<table name="blockurls" classname="BlockUrls" parentscript="Block">
+    <name>Урлы сайта для кода</name>
+    <col type="0" name="bcodeurls_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="6" name="block_id" parent="y">
+        <name>Блок</name>
+        <comment>Блок</comment>
+        <ref><table>block</table><field>block_id</field><visual>name</visual></ref>
+    </col>
+    <col type="1" name="url" visuality="y" size="90" not_null="y">
+        <name>url</name>
+        <comment>url</comment>
+    </col>
+    <col type="8" name="status" selectible="y" isstate="y" not_null="y">
+        <name>Вкл</name>
+        <comment>Флаг (1-вкл 0-выкл)</comment>
+    </col>
+</table>
+
+<table name="bcode" classname="Code" parentscript="Block">
+    <name>Блоки пользователя</name>
+    <col type="0" name="bcode_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="6" name="block_id" parent="y">
+        <name>Блок</name>
+        <comment>Блок</comment>
+        <ref><table>block</table><field>block_id</field><visual>name</visual></ref>
+    </col>
+    <col type="1" name="name" visuality="y" size="90" not_null="y">
+        <name>Название</name>
+        <comment>Название</comment>
+    </col>
+    <col type="1" name="groupname" visuality="y" size="90">
+        <name>алиас для групирования</name>
+        <comment>алиас для групирования</comment>
+    </col>
+    <col type="3" name="percent" visuality="y" size="90" not_null="y">
+        <name>Процент</name>
+        <comment>Процент</comment>
+    </col>
+    <col type="3" name="redirpercent" visuality="y" size="90" not_null="y">
+        <name>Процент покупного трафа</name>
+        <comment>Процент покупного трафа</comment>
+    </col>
+    <col type="2" name="top_js" visuality="y" size="90" not_null="y">
+        <name>Верхняя часть кода</name>
+        <comment>Верхняя часть кода</comment>
+    </col>
+    <col type="2" name="bottom_js" visuality="y" size="90" not_null="y">
+        <name>Нижняя часть кода</name>
+        <comment>Нижняя часть кода</comment>
+    </col>
+    <col type="6" name="partner_system_id">
+        <name>Партнерка</name>
+        <comment>Партнерка</comment>
+        <ref><table>partner_system</table><field>partner_system_id</field><visual>name</visual></ref>
+    </col>
+    <col type="1" name="divname" size="90">
+        <name>ID Дива</name>
+        <comment>ID Дива</comment>
+    </col>
+</table>
+
+<table name="codestat" nogen="y">
+    <name>Статистика</name>
+    <col type="3" name="date" primary="y" not_null="y" datatype="date">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="6" name="user_id" primary="y" not_null="y">
+        <name>Пользователь</name>
+        <comment>Пользователь</comment>
+        <ref><table>user</table><field>user_id</field><visual>email</visual><order>email</order></ref>
+    </col>
+    <col type="6" name="block_id" primary="y" not_null="y">
+        <name>Блок</name>
+        <comment>Блок</comment>
+        <ref><table>block</table><field>block_id</field><visual>name</visual></ref>
+    </col>
+    <col type="6" name="bcode_id" primary="y" not_null="y">
+        <name>Блок</name>
+        <comment>Блок</comment>
+        <ref><table>bcode</table><field>bcode_id</field><visual>name</visual></ref>
+    </col>
+    <col type="3" name="views" visuality="y" size="90" not_null="y">
+        <name>Показы</name>
+        <comment>Показы</comment>
+    </col>
+</table>
+
+
+<!-- System -->
+    <table imagepath="/docs/" name="user" order="user_id" pagesize="50" classname="User">
+        <name>Пользователи</name>
+        <col name="user_id" primary="y" type="0" visuality="y">
+            <name>N</name>
+            <comment>Уникальный идентификатор</comment>
+        </col>
+        <col filt="y" mainTitle="y" name="email" size="90" type="5" visuality="y">
+            <index unique="y">system_email</index>
+            <name>Email</name>
+            <comment>Email</comment>
+            <selector>
+                <visual>text-short</visual>
+            </selector>
+        </col>
+        <col name="password" size="90" type="1" visuality="y">
+            <name>Пароль</name>
+            <comment>Пароль</comment>
+        </col>
+        <col calendar="y" name="password_change_date" type="12">
+            <name>Дата смены пароля</name>
+            <comment>Дата смены пароля</comment>
+        </col>
+        <col name="surname" size="90" type="1" visuality="y">
+            <name>Фамилия</name>
+            <comment>Фамилия</comment>
+            <required>Фамилия обязательно</required>
+            <filter>
+                <name>stripTags</name>
+            </filter>
+            <validator>
+                <name>hasLength</name>
+                <message>surname_length</message>
+                <params>1, 255</params>
+            </validator>
+        </col>
+        <col name="name" size="90" type="1" visuality="y">
+            <name>Имя</name>
+            <comment>Имя</comment>
+            <required>Имя обязательно</required>
+            <filter>
+                <name>stripTags</name>
+            </filter>
+            <validator>
+                <name>hasLength</name>
+                <message>name_length</message>
+                <params>1, 255</params>
+            </validator>
+        </col>
+        <col name="nickname" size="90" type="1" visuality="y">
+            <index unique="y">1</index>
+            <name>Nickname</name>
+            <comment>Nickname</comment>
+        </col>
+
+        <col name="company_name" size="90" type="1">
+            <name>Компания/проект</name>
+            <comment>Компания/проект</comment>
+        </col>
+</table>
+
+<table name="session_" ordering="data desc">
+    <name>Сессии</name>
+    <col type="3" name="session_id" primary="y" visuality="y" datatype="CHAR(32)">
+        <name>N</name>
+        <comment>Уникальный идентификатор</comment>
+    </col>
+    <col type="12" name="data">
+        <name>Время последнего обращения</name>
+        <comment>Время последнего обращения</comment>
+        <index>1</index>
+    </col>
+    <col type="6" name="user_id" visuality="y">
+        <name>Пользователь</name>
+        <comment>Пользователь</comment>
+        <ref><table>user</table><field>user_id</field><visual>email</visual></ref>
+        <index>3</index>
+    </col>
+    <col type="2" name="object_" rows="5" cols="90">
+        <name>Данные</name>
+        <comment>Данные</comment>
+    </col>
+</table>
+
+<!-- CMF -->
+
+<table name="module" classname="Module">
+    <name>Модули</name>
+    <col type="0" name="module_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="1" name="name" visuality="y" size="90" not_null="y">
+        <name>Название</name>
+        <comment>Название</comment>
+    </col>
+    <pseudocol name="scripts">
+        <name>Дерево</name>
+    </pseudocol>
+</table>
+
+<table name="cmf_script" imagepath="/adm/" parentscript="cmf_script" treechild="cmf_script" move="y" classname="CmfScript">
+    <name>Скрипты</name>
+    <col type="0" name="cmf_script_id" primary="y" visuality="y">
+        <name>N</name>
+        <comment>Уникальный идентификатор Скрипта</comment>
+    </col>
+    <col type="3" name="parent_id" parent="y">
+        <index>1</index>
+        <name>N</name>
+        <comment>Уникальный идентификатор рубрики</comment>
+    </col>
+    <col type="1" name="article">
+        <index>2</index>
+        <name>Псевдоним скрипта</name>
+        <comment>Псевдоним скрипта</comment>
+    </col>
+    <col type="1" name="name" visuality="y" size="90" isfold="y"><!-- translate="y" -->
+        <name>Название cкрипта</name>
+        <comment>Название скрипта</comment>
+    </col>
+    <col type="1" name="url" visuality="y" size="90" trim="y">
+        <name>Путь к скрипту</name>
+        <comment>Путь к скрипту</comment>
+    </col>
+    <col type="2" name="description" rows="7" cols="90" panelize="y">
+        <name>Краткое описание</name>
+        <comment>Краткое описание</comment>
+    </col>
+    <col type="1" name="title" size="90" trim="y">
+        <name>Заголовок страницы</name>
+        <comment>Заголовок страницы</comment>
+    </col>
+    <col type="1" name="tabname" size="90" trim="y">
+        <name>Заголовок табулятора (ред.)</name>
+        <comment>Заголовок табулятора (ред.)</comment>
+    </col>
+    <col type="7" name="image">
+        <name>Картинка</name>
+        <comment>Картика</comment>
+    </col>
+    <col type="1" name="background" size="7">
+        <name>Цвет фона</name>
+        <comment>Цвет фона</comment>
+    </col>
+    <col type="10" name="type" size="90" visuality="y">
+        <name>Тип</name>
+        <comment>Тип</comment>
+        <enum>
+            <option value="0"> в главное меню </option>
+            <option value="1"> показывать справа</option>
+            <option value="2"> новый</option>
+        </enum>
+    </col>
+    <col type="8" name="status" selectible="y" isstate="y" not_null="y">
+        <name>Вкл</name>
+        <comment>Флаг (1-вкл 0-выкл)</comment>
+    </col>
+    <col type="8" name="realstatus" selectible="y" isrealstate="y" internal="y">
+        <name>auto Статус - Вкл/Выкл</name>
+        <comment>auto Флаг (1-вкл 0-выкл)</comment>
+    </col>
+    <col type="11" name="ordering" internal="y">
+        <name>Порядок сортировки</name>
+        <comment>Порядок сортировки</comment>
+    </col>
+    <col type="8" name="lastnode" selectible="y" lastnode="y" internal="y" not_null="y" datatype="int(1) unsigned default 1">
+        <name>лист дерева</name>
+        <comment>лист дерева</comment>
+    </col>
+</table>
+
+<table name="module_scripts" nogen="y">
+    <name>Связь скрипта и модуля</name>
+    <col type="3" name="module_id" primary="y" visuality="y">
+        <name>модуль</name>
+        <comment>Id- модуля</comment>
+    </col>
+    <col type="3" name="cmf_script_id" primary="y" visuality="y">
+        <name>N</name>
+        <comment>Уникальный идентификатор Скрипта</comment>
+        <index>1</index>
+    </col>
+</table>
+
+<table name="cmf_role" classname="CmfRole">
+    <name>Роли</name>
+    <col type="0" name="cmf_role_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="1" name="name" visuality="y" size="90">
+        <name>Название роли</name>
+        <comment>Название роли</comment>
+        <required>Название роли обязательно</required>
+    </col>
+    <col type="1" name="visualname" size="90">
+        <name>Отображаемое название роли</name>
+        <comment>Название роли</comment>
+    </col>
+    <col type="1" name="cmf_url" visuality="y" size="90">
+        <name>Стартовая страница</name>
+        <comment>Стартовая страница</comment>
+    </col>
+    <!-- col type="1" name="confirm_url" visuality="y" size="90">
+        <name>Страница подтверждения роли</name>
+        <comment>Страница подтверждения роли</comment>
+    </col >
+    <col type="1" name="mode" size="90">
+        <name>Режим</name>
+        <comment>Режим</comment>
+    </col -->
+    <pseudocol name="scripts">
+        <name>Модули</name>
+    </pseudocol>
+</table>
+
+<table name="cmf_role_mode" classname="CmfRoleMode" parentscript="CmfRole">
+    <name>Режимы, доступные роли</name>
+    <col type="0" name="cmf_role_mode_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="6" name="cmf_role_id" parent="y">
+        <name>Базовая роль</name>
+        <comment>Базовая роль</comment>
+        <ref><table>cmf_role</table><field>cmf_role_id</field><visual>name</visual></ref>
+        <index unique="y">role_mode</index>
+    </col>
+    <col type="6" name="mode_role_id" visuality="y">
+        <name>Доступный режим</name>
+        <comment>Доступный режим</comment>
+        <ref><table>cmf_role</table><field>cmf_role_id</field><visual>name</visual></ref>
+        <index unique="y">role_mode</index>
+    </col>
+</table>
+
+<table name="user_owner" classname="UserOwner">
+    <name></name>
+    <col type="0" name="user_owner_id" primary="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="6" name="user_id">
+        <name>Пользователь</name>
+        <comment>Пользователь</comment>
+        <ref><table>user</table><field>user_id</field><visual>email</visual></ref>
+        <index>user</index>
+    </col>
+    <col type="6" name="owner_id">
+        <name>Управляющий</name>
+        <comment>Пользователь, кот. может ходить под этим аккаунтом</comment>
+        <ref><table>user</table><field>user_id</field><visual>email</visual></ref>
+        <index>owner</index>
+    </col>
+    <col type="6" name="owner_role_id">
+        <name>Роль управляющего</name>
+        <ref><table>cmf_role</table><field>cmf_role_id</field><visual>name</visual></ref>
+        <comment>Роль пользователя, кот. может ходить под этим аккаунтом</comment>
+        <index>owner</index>
+    </col>
+</table>
+
+<table name="restriction">
+    <name>Ограничения</name>
+    <col type="0" name="restriction_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="1" name="name" visuality="y" size="90" not_null="y">
+        <name>Название</name>
+        <comment>Название</comment>
+    </col>
+</table>
+
+<table name="cmf_user_role_link" classname="CmfURole" parentscript="User">
+    <name>Роли</name>
+    <col type="0" name="cmf_user_role_link_id" primary="y" visuality="y">
+        <name>Id</name>
+        <comment>Id</comment>
+    </col>
+    <col type="6" name="user_id"  visuality="y" parent="y">
+        <name>Пользователь</name>
+        <ref><table>user</table><field>user_id</field><visual>email</visual></ref>
+        <comment>Пользователь</comment>
+        <index unique="y">user_role</index>
+    </col>
+    <col type="6" name="cmf_role_id" visuality="y">
+        <name>Роль</name>
+        <ref><table>cmf_role</table><field>cmf_role_id</field><visual>name</visual></ref>
+        <comment>Роль</comment>
+        <index unique="y">user_role</index>
+    </col>
+</table>
+
+<table name="cmf_role_module_link" nogen="y">
+    <name>Права роли на модуль</name>
+    <col type="6" name="cmf_role_id" primary="y" not_null="y">
+        <name>Роль</name>
+        <comment>Роль</comment>
+        <ref><table>cmf_role</table><field>cmf_role_id</field><visual>name</visual></ref>
+    </col>
+    <col type="3" name="module_id" primary="y">
+        <name>модуль</name>
+        <comment>Id- модуля</comment>
+    </col>
+    <col type="6" name="restriction_id" not_null="y">
+        <name>ограничения</name>
+        <comment>ограничения</comment>
+        <ref><table>restriction</table><field>restriction_id</field><visual>name</visual></ref>
+    </col>
+    <col type="8" name="is_editor" isstate="y" selectible="y" default="0">
+        <name>Может редактировать</name>
+        <comment>Флаг (0-вкл 1-выкл)</comment>
+    </col>
+</table>
+
+
+<table name="cmf_role_combination" nogen="y" engine="Memory">
+    <name>уникальная комбинации ролей</name>
+    <col type="1" name="cmf_role_combination_id" primary="y" not_null="y" datatype="char(41) character set latin1 collate latin1_bin NOT NULL">
+        <name>MD5</name>
+        <comment>MD5</comment>
+    </col>
+</table>
+
+
+<table name="cmf_rights" nogen="y" engine="Memory">
+    <name>Права для уникальной комбинации ролей</name>
+    <col type="6" name="cmf_role_combination_id" primary="y" not_null="y" datatype="char(41) character set latin1 collate latin1_bin NOT NULL">
+        <name>Роль</name>
+        <comment>Роль</comment>
+        <ref><table>cmf_role</table><field>cmf_role_id</field><visual>name</visual></ref>
+    </col>
+    <col type="3" name="cmf_script_id" primary="y">
+        <name>модуль</name>
+        <comment>Id- модуля</comment>
+    </col>
+    <col type="6" name="restriction_id" not_null="y">
+        <name>ограничения</name>
+        <comment>ограничения</comment>
+        <ref><table>restriction</table><field>restriction_id</field><visual>name</visual></ref>
+    </col>
+    <col type="8" name="is_editor" isstate="y" selectible="y" default="0">
+        <name>Может редактировать</name>
+        <comment>Флаг (0-вкл 1-выкл)</comment>
+    </col>
+</table>
+
+<table name="cmf_xmls_article">
+    <name>Привязка типа к скрипту</name>
+    <col type="3" name="type" primary="y"  visuality="y" editable="y">
+        <name>Тип</name>
+        <comment>Тип</comment>
+    </col>
+    <col type="6" name="article" visuality="y">
+        <ref type="text"><table>cmf_script</table><field>article</field><visual>name</visual></ref>
+        <name>ARTICLE</name>
+        <comment>ARTICLE</comment>
+    </col>
+    <col type="1" name="edit" visuality="y" size="90">
+        <name>Шаблон пути для редактирования</name>
+        <comment>Шаблон пути для редактирования</comment>
+    </col>
+    <col type="1" name="view" visuality="y" size="90">
+        <name>Шаблон пути для просмотра</name>
+        <comment>Шаблон пути для просмотра</comment>
+    </col>
+</table>
+
+</config>

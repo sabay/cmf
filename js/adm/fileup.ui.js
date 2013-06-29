@@ -1,0 +1,81 @@
+/* 
+
+	Originaly from http://www.hedgerwow.com/360/dhtml/css-form-file-upload.html
+	Modify by iceman
+
+*/
+ var FileUploadUI =  function(dUploadButtonEl){
+	 this.init.apply(this,arguments);
+ }
+
+ FileUploadUI.prototype = {
+	 
+	 init:function(dUploadButtonEl){
+
+			 var dEl = $('#id-'+dUploadButtonEl);
+			 this._uploadButtonEl = dEl;
+			 this._uploadPathEl =   $("#id-text-"+dUploadButtonEl);
+
+			 if( this._uploadPathEl ){
+
+				 dEl.bind("change", function (){ 	//you need to sync the value when user select a new file path;
+					 var dPath = $("#id-text-"+dUploadButtonEl);
+					 var dBtn =  $('#id-'+dUploadButtonEl);
+					 dPath.val(dBtn.val().split('/').pop().split('\\').pop());
+					} );
+				 $("#id-form").bind("submit", function (){ //				 this.addEvent(dEl.form,'submit',this.destruct);
+					 var dPath = $("#id-text-"+dUploadButtonEl);
+					 var dBtn =  $('#id-'+dUploadButtonEl);
+			  		dPath.disabled = true ;
+					dPath.attr({'readOnly': 'true','disabled': 'true'});
+			  		dBtn.css({'display':'none'});//focus-not-allowed
+					} );
+
+				 this.makeAccessible();
+			 }
+	 }, 
+  
+	makeAccessible:function(){
+			var dPath = this._uploadPathEl;
+			var dBtn =  this._uploadButtonEl;	 
+			dPath.tabIndex = -1;
+			dPath.bind('focus', function(){
+				dBtn.focus(); return false;});
+			dBtn.bind('keydown', function(e){
+				if(e.keyCode != 13) return ;
+				if( dBtn.click ) dBtn.click();
+			});
+			this.makeAccessible = function(){};
+	}
+
+}
+
+
+/*
+	supporting functions for CMS
+*/
+function delImg(nameI){
+$('#clr_'+nameI).val('1');
+$('#del-'+nameI).show();
+$('#inter-'+nameI).hide();
+return false;}
+
+function undelImg(nameI){
+$('#clr_'+nameI).val('0');
+$('#inter-'+nameI).show();
+$('#del-'+nameI).hide();
+return false;}
+
+function loadImg(nameI){
+$('#clr_'+nameI).val('0');
+$('#browse-'+nameI).show();
+$('#inter-'+nameI).hide();
+return false;}
+
+function notloadImg(nameI){
+$('#id-text-'+nameI).val(''); 
+$('#id-'+nameI).val('');
+$('#clr_'+nameI).val('0');
+$('#browse-'+nameI).hide();
+$('#inter-'+nameI).show();
+return false;}
